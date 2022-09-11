@@ -1,0 +1,69 @@
+:root {
+    --light-font: white;
+    --primary-color: rgb(109, 109, 254);
+    --dark-primary-color: rgb(0, 0, 130);
+    --secondary-color: rgb(38, 61, 107);
+    --accent-color: rgb(154, 154, 154);
+    --dark-accent-color: rgb(77, 77, 77);
+}
+
+header {
+    background-image: linear-gradient(to right, var(--primary-color), var(--dark-primary-color));
+}
+
+header h1 {
+    color: var(--light-font);
+    font-weight: bold;
+}
+
+.border-dark-accent {
+    border-color: var(--dark-accent-color) !important;
+}
+
+.btn-primary {
+    background-color: var(--primary-color) !important;
+}
+
+.btn-primary:hover {
+    background-color: var(--dark-primary-color) !important;
+    transition: background-color 0.5s ease-in-out;
+}
+
+.left-divider {
+    border-width: 3px;
+    border-color: var(--dark-accent-color);
+}
+
+.bg-secondary-color {
+    color: var(--light-font);
+    background-color: var(--secondary-color);
+}
+
+.btn-accent-color {
+    background-color: var(--accent-color) !important;
+}
+
+.btn-accent-color:hover {
+    color: var(--light-font);
+    background-color: var(--dark-accent-color) !important;
+    transition: all 0.5s ease-in-out;
+}
+
+@media (min-width: 968px) {
+    /* helps prevent text wrapping on certain screen sizes */
+    .form-header {
+        font-size: 1.75rem!important;
+    }
+}
+
+@media (min-width: 768px) {
+    /* helps prevent text wrapping on certain screen sizes */
+    .form-header {
+        font-size: 1.4rem;
+    }
+
+    /* make width 25% for medium or larger screen sizes */
+    .w-md-25 {
+        width: 25% !important;
+    }
+}

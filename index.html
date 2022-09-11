@@ -7,10 +7,9 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
 
         <!-- third party stylesheets -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-            integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"/>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"/>
 
         <!-- stylesheets -->
         <link rel="stylesheet" href="./assets/css/style.css"/>
@@ -19,21 +18,65 @@
     </head>
 
     <body>
+        <header class="d-flex justify-content-center mb-3">
+            <h1 class="display-4 text-center">Weather Dashboard</h1>
+        </header>
+        <main class="container-fluid d-flex flex-column flex-md-row-reverse">
+            <div class="flex-fill ml-md-2 flex-column">
+                <div class="container-fluid border border-dark-accent mb-3">
+                    <h2 id="city-and-date" class="mb-4 mt-2 font-weight-bold">[City Here]</h2>
+                    <p><b>Temp:</b><span id="temp-info"><!-- Fill dynamically --></span></p>
+                    <p><b>Wind:</b><span id="wind-info"><!-- Fill dynamically --></span></p>
+                    <p><b>Humidity:</b><span id="humidity-info"><!-- Fill dynamically --></span></p>
+                    <p><b>UV Index:</b><span id="uv-index-info"><!-- Fill dynamically --></span></p>
+                </div>
+                <div class="flex-fill">
+                    <h4 class="mb-3 font-weight-bold">5-Day Forecast:</h4>
+                    <div id="days-forecast" class="d-flex inline-flex justify-content-between">
+                        <!--
+                        <div class="card bg-secondary-color flex-fill p-2">
+                            <h5 class="mb-3">Test 1</h5>
+                            <p><i class="fas fa-cloud"></i></p>
+                            <p>Temp: [example]</p>
+                            <p>Wind: [example]</p>
+                            <p>Humidity: [example]</p>
+                        </div>
+                        <div class="card bg-secondary-color flex-fill p-2 ml-4">
+                            <h5 class="mb-3">Test 2</h5>
+                            <p><i class="fas fa-cloud"></i></p>
+                            <p>Temp: [example]</p>
+                            <p>Wind: [example]</p>
+                            <p>Humidity: [example]</p>
+                        </div>
+                        -->
+                    </div>
+                </div>
+            </div>
+            <div class="w-md-25 mr-md-2">
+                <div class="form-search">
+                    <div class="form-group">
+                        <h3 class="form-header font-weight-bold">Search for a City:</h2>
+                            <input class="form-control border-dark-accent" type="text" placeholder="San Diego">
+                    </div>
+                    <button type="submit" class="btn btn-primary form-control">Search</button>
+                </div>
+                <hr class="left-divider my-3">
+                <div id="search-cities-list" class="d-flex flex-column">
+                    <!-- <button class="btn btn-accent-color flex-fill">Austin</button> -->
+                </div>
+            </div>
+        </main>
 
         <!-- third party scripts -->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-            crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
         <!-- scripts -->
+        <script src="./assets/js/data.js"></script>
+        <script src="./assets/js/api.js"></script>
         <script src="./assets/js/script.js"></script>
     </body>
 </html>
