@@ -15,34 +15,51 @@ let createPopularCityButton = (name) => $('<button>').addClass(['btn', 'btn-acce
 let determineWeather = (json) => weatherTypes[json.weather[0].main.toLowerCase()];
 let createLoadingSpinner = () => $('<div>').addClass('spinner-border').append($('<span>').addClass('sr-only'));
 
-function onSearchRequest() {
+function queryCity(city) {
+    // clear the saved city before we push the search value to the query string
+    clearSavedCity();
+    // add the query param, this reloads the page
+    location.search = `?city=${city}`;
+}
+
+function launchSearch() {
+    // get the value in the search box
     let searchValue = searchBox.val().trim();
+    // if the value has no content
     if(searchValue.length === 0) {
+        // tell the user
         window.alert('Enter a city to search!');
+        // return
         return;
     }
-    clearSavedCity();
-    location.search = `?city=${searchValue}`;
+    queryCity(searchValue);
 }
 
 function searchFunctionality() {
-    searchButton.on('click', onSearchRequest);
-
+    // on search button click, launch a search
+    searchButton.on('click', launchSearch);
+    // on search box keypress
     searchBox.on('keypress', (event) => {
+        // if the key is 'Enter'
         if(event.key === 'Enter') {
-            onSearchRequest();
+            // launch a search
+            launchSearch();
         }
     })
 }
 
 function populatePopularCities() {
+    // for each popular city
     for(let i = 0; i < popularCities.length; i++) {
         let popularCity = popularCities[i];
+        // create a button
         let popularCityButton = createPopularCityButton(popularCity);
+        // on click
         popularCityButton.on('click', () => {
-            clearSavedCity();
-            location.search = `?city=${popularCity}`;
+            // query the popular city
+            queryCity(popularCity);
         });
+        // append the button to the list of popular cities
         searchCitiesList.append(popularCityButton);
     }
 }
