@@ -43,7 +43,7 @@ function directGeocode(geoInfo) {
         });
 }
 
-function currentWeather(lat, lon, city) {
+function currentWeather(lat, lon) {
     let requestUrl = formatURL(currentWeatherRoute);
     requestUrl += `?lat=${lat}&lon=${lon}&units=standard`;
     requestUrl = appendAppID(requestUrl);
@@ -52,7 +52,7 @@ function currentWeather(lat, lon, city) {
         .then(verifyGood)
         .then((json) => {
             let apiJson = {
-                loc: {lat: lat, lon: lon, city: city},
+                loc: {lat: lat, lon: lon, city: json.name},
                 weather: json.weather,
                 temp: convertKToF(json.main.temp),
                 wind: convertMStoMPH(json.wind.speed),
@@ -62,7 +62,12 @@ function currentWeather(lat, lon, city) {
         });
 }
 
-function fetchWeather(city) {
-    return directGeocode({name: city})
-        .then((json) => currentWeather(json[0].lat, json[0].lon, json[0].name));
+function fetchWeather(city, coords) {
+    // if coordinates are available
+    if(coords.lat && coords.lon) {
+        // skip geocode, just make the weather request
+        return currentWeather(coords.lat, coords.lon);
+    }
+    // otherwise we need to geocode, then make the request
+    return directGeocode({name: city}).then((json) => currentWeather(json[0].lat, json[0].lon));
 }

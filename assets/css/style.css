@@ -74,6 +74,7 @@ header h1 {
 }
 
 @media (max-width: 568px) {
+    /* reduce city and date section of weather info to avoid content looking weird on smaller screens */
     #city-and-date {
         font-size: 1.4rem;
     }
