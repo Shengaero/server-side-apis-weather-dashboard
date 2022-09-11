@@ -4,30 +4,8 @@ let apiBase = 'http://api.openweathermap.org/';
 let directGeoRoute = 'geo/1.0/direct';
 let currentWeatherRoute = 'data/2.5/weather';
 
-let weatherTypes = {
-    clear: {
-        name: 'Clear Skies',
-        iconClass: 'fa-sun'
-    },
-    clouds: {
-        name: 'Clouds',
-        iconClass: 'fa-cloud'
-    },
-    rain: {
-        name: 'Rain',
-        iconClass: 'fa-cloud-rain'
-    },
-    snow: {
-        name: 'Snow',
-        iconClass: 'fa-snowflake'
-    },
-    fog: {
-        name: "Fog",
-        iconClass: 'fa-smog'
-    }
-};
-
-let convertKToF = (kelvin) => (1.8 * (kelvin - 273)) + 32;
+let convertKToF = (kelvin) => Math.round((1.8 * (kelvin - 273)) + 32);
+let convertMStoMPH = (ms) => Math.round(ms * 2.236936);
 let formatURL = (route) => apiBase + route;
 let appendAppID = (requestUrl) => requestUrl + `&appid=${apiKey}`;
 let convertPromiseToJSON = (response) => response.json();
@@ -77,7 +55,7 @@ function currentWeather(lat, lon, city) {
                 loc: {lat: lat, lon: lon, city: city},
                 weather: json.weather,
                 temp: convertKToF(json.main.temp),
-                wind: json.wind.speed,
+                wind: convertMStoMPH(json.wind.speed),
                 humidity: json.main.humidity
             };
             return apiJson; // rewrap this with all the info we need

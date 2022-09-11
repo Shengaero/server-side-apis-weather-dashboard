@@ -49,6 +49,11 @@ header h1 {
     transition: all 0.5s ease-in-out;
 }
 
+.info-loading {
+    height: 1rem;
+    width: 1rem;
+}
+
 @media (min-width: 968px) {
     /* helps prevent text wrapping on certain screen sizes */
     .form-header {
@@ -65,5 +70,11 @@ header h1 {
     /* make width 25% for medium or larger screen sizes */
     .w-md-25 {
         width: 25% !important;
+    }
+}
+
+@media (max-width: 568px) {
+    #city-and-date {
+        font-size: 1.4rem;
     }
 }
