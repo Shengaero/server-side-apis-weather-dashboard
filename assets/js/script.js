@@ -6,6 +6,7 @@ let windInfo = $('#wind-info');
 let humidityInfo = $('#humidity-info');
 let searchBox = $('#search-box');
 let searchButton = $('#search-button');
+let daysForecast = $('#days-forecast');
 
 // this query object will help manage the page info
 // by default, it will show us the first city in the popular cities list
@@ -109,7 +110,30 @@ function populateSearchInfo() {
         humidityInfo.text(`${json.humidity}%`);
         // save the city fetched
         saveCity(json.loc.lat, json.loc.lon);
-    }).catch(() => window.alert('An unexpected error occurred!'));
+
+        fetchForecast(json.loc.lat, json.loc.lon).then((json) => {
+            for(let i = 0; i < json.length; i++) {
+                let daysWeather = json[i];
+                let daysWeatherCard = $('<div>');
+                daysWeatherCard.addClass(['card', 'bg-secondary-color', 'flex-fill', 'p-2']);
+                if(i > 0) {
+                    daysWeatherCard.addClass('ml-4');
+                }
+
+                let daysWeatherType = determineWeather(daysWeather)
+                daysWeatherCard.append($('<h5>').addClass('mb-3').text(`(${daysWeather.time.format('M/D/yyyy')})`));
+                daysWeatherCard.append($('<p>').append($('<i>').addClass(['fas', daysWeatherType.iconClass])));
+                daysWeatherCard.append($('<p>').text(`Temp: ${daysWeather.temp}\u00B0F`));
+                daysWeatherCard.append($('<p>').text(`Wind: ${daysWeather.wind}`));
+                daysWeatherCard.append($('<p>').text(`Humidity: ${daysWeather.humidity}%`));
+
+                daysForecast.append(daysWeatherCard);
+            }
+        })
+    }).catch((error) => {
+        console.error(error);
+        window.alert('An unexpected error occurred!');
+    });
 }
 
 searchFunctionality();

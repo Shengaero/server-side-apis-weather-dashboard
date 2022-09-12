@@ -22,6 +22,11 @@ let weatherTypes = {
     fog: {
         name: "Fog",
         iconClass: 'fa-smog'
+    },
+    // humanity is so screwed
+    smoke: {
+        name: 'Smoke',
+        iconClass: 'fa-smog'
     }
 };
 
