@@ -1,5 +1,5 @@
 let apiKey = 'a0eace9ccff525be4601e59c9d29c184';
-let apiBase = 'http://api.openweathermap.org/';
+let apiBase = 'https://api.openweathermap.org/';
 
 let directGeoRoute = 'geo/1.0/direct';
 let currentWeatherRoute = 'data/2.5/weather';
