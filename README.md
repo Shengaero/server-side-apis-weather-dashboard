@@ -9,5 +9,5 @@ This is the sixth challenge for the Northwestern University bootcamp which taske
 
 # Link
 
-Visit the deployed site [here](https://shengaero.github.io/whether-dashboard/)
+Visit the deployed site [here](https://shengaero.github.io/weather-dashboard/)
 
