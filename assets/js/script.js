@@ -101,7 +101,10 @@ function populateSearchInfo() {
         // determine what type of weather it is
         let weatherType = determineWeather(json);
         // append the weather icon type to signify what the weather is like
-        weatherIcon.addClass(weatherType.iconClass);
+        if(weatherType) {
+            // if the weather type is unknown this won't run
+            weatherIcon.addClass(weatherType.iconClass);
+        }
         // temperature info
         tempInfo.text(`${json.temp}\u00B0F`);
         // wind info
